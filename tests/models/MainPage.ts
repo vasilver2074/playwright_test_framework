@@ -116,7 +116,7 @@ export class MainPage {
 
   async checkElementsVisibility() {
     for (const { locator, name } of this.elements) {
-      test.step(`Verify displaying Playwright ${name}`, async () => {
+      await test.step(`Verify displaying Playwright ${name}`, async () => {
         await expect.soft(locator(this.page)).toBeVisible();
       });
     }
@@ -125,7 +125,7 @@ export class MainPage {
   async checkElementsText() {
     for (const { locator, name, text } of this.elements) {
       if (text) {
-        test.step(`Verify element's name of ${name}`, async () => {
+        await test.step(`Verify element's name of ${name}`, async () => {
           await expect.soft(locator(this.page)).toContainText(text);
         });
       }
@@ -136,7 +136,7 @@ export class MainPage {
     for (const { locator, name, attribute } of this.elements) {
       if (attribute) {
         if (attribute) {
-          test.step(`Verify element's attribute href for ${name}`, async () => {
+          await test.step(`Verify element's attribute href for ${name}`, async () => {
             await expect
               .soft(locator(this.page))
               .toHaveAttribute(attribute?.type, attribute?.value);
