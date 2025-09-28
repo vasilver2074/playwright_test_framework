@@ -1,5 +1,5 @@
-import { test, expect } from "../fixtures/mainPage";
-import { MainPage } from "../models/MainPage";
+import { test, expect } from "../../fixtures/mainPage";
+import { MainPage } from "../../pages/playwright/Main.page";
 
 test.describe("Main Page tests", () => {
 
@@ -23,7 +23,7 @@ test.describe("Main Page tests", () => {
     await test.step('Verify displaying light mode', async () => {
       await mainPage.checkLightThemeAttributesValue();
     });
-    await test.step('Verify creating screenshot with loght theme', async () => {
+    await test.step('Verify creating screenshot with light theme', async () => {
       await mainPage.checkLayoutWithLightMode();
     });
   });

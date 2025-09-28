@@ -84,7 +84,7 @@ export class MainPage {
       {
         locator: (page: Page): Locator =>
           page.getByRole("button", { name: "Switch between dark and light" }),
-        name: "Lightmode button",
+        name: "LightMode button",
       },
       {
         locator: (page: Page): Locator =>
