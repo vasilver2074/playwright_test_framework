@@ -21,56 +21,84 @@ export class DouPage {
       },
       {
         locator: (page: Page): Locator =>
-          page.getByRole("link", { name: "Форум" }),
+          page.getByRole("link", { name: 'Форум', exact: true }),
         name: "Форум",
         text: "Форум",
       },
       {
         locator: (page: Page): Locator =>
-          page.getByRole("link", { name: "Стрічка" }),
+          page.getByRole("link", { name: 'Стрічка' }),
         name: "Стрічка",
         text: "Стрічка",
       },
       {
         locator: (page: Page): Locator =>
-          page.getByRole("link", { name: "Зарплати" }),
+          page.getByRole("link", { name: 'Зарплати', exact: true }),
         name: "Зарплати",
         text: "Зарплати",
       },
       {
         locator: (page: Page): Locator =>
-          page.getByRole("link", { name: "Робота" }),
+          page.getByRole("link", { name: 'Робота', exact: true }),
         name: "Робота",
         text: "Робота",
       },
       {
         locator: (page: Page): Locator =>
-          page.getByRole("link", { name: "Календар" }),
+          page.getByRole("link", { name: 'Календар' }),
         name: "Календар",
         text: "Календар",
       },
       {
         locator: (page: Page): Locator =>
-          page.getByRole("link", { name: "Спільноти" }),
+          page.getByRole("link", { name: 'Спільноти', exact: true }),
         name: "Спільноти",
         text: "Спільноти",
       },
       {
         locator: (page: Page): Locator =>
-          page.getByRole("textbox", { name: "пошук" }),
+          page.getByRole("textbox", { name: 'пошук' }),
         name: "пошук",
       },
     ];
   }
 
+  async navigate() {
+    await this.page.goto("https://dou.ua/");
+  }
+
   async checkElementsVisibility() {
-      for (const { locator, name } of this.elements) {
-        await test.step(`Verify displaying Playwright ${name}`, async () => {
-          await expect.soft(locator(this.page)).toBeVisible();
+    for (const { locator, name } of this.elements) {
+      await test.step(`Verify displaying Playwright ${name}`, async () => {
+        await expect.soft(locator(this.page)).toBeVisible();
+      });
+    }
+  }
+
+  async checkElementsText() {
+    for (const { locator, name, text } of this.elements) {
+      if (text) {
+        await test.step(`Verify element's name of ${name}`, async () => {
+          await expect.soft(locator(this.page)).toContainText(text);
         });
       }
     }
-    
+  }
+
+  // async checkElementsHrefAttribute() {
+  //   for (const { locator, name, attribute } of this.elements) {
+  //     if (attribute) {
+  //       if (attribute) {
+  //         await test.step(`Verify element's attribute href for ${name}`, async () => {
+  //           await expect
+  //             .soft(locator(this.page))
+  //             .toHaveAttribute(attribute?.type, attribute?.value);
+  //         });
+  //       }
+  //     }
+  //   }
+  // }
+
   public get duoLogo(): Locator {
     return this.page.getByRole("link", { name: "DOU Logo" });
   }
