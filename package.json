@@ -9,11 +9,12 @@
   "description": "",
   "devDependencies": {
     "@faker-js/faker": "^10.0.0",
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.56.1",
     "@types/luxon": "^3.7.1",
     "@types/node": "^24.3.0"
   },
   "dependencies": {
-    "luxon": "^3.7.2"
+    "luxon": "^3.7.2",
+    "playwright": "^1.56.1"
   }
 }

@@ -17,6 +17,15 @@ test.describe("Check cart", () => {
     await loginPage.login("standard_user", "secret_sauce");
   });
 
+  test("authorization: successful login", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.navigate();
+    await loginPage.login("standard_user", "secret_sauce");
+
+    expect(page.url()).toContain("/inventory.html");
+  });
+
   test("Add to cart", async ({ page }) => {
     await inventoryPage.clickInventory();
     await inventoryPage.addItemToCart();
