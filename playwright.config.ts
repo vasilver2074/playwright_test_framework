@@ -36,8 +36,25 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: "dou",
+      testDir: "./tests/UI/dou/specs",
+      use: { ...devices['Desktop Chrome'],
+      baseURL: "https://dou.ua/"
+       },
+    },
+    {
+      name: "saucedemo",
+      testDir: "./tests/UI/saucedemo/specs",
+      use: { ...devices['Desktop Chrome'],
+      baseURL: "https://www.saucedemo.com/"
+       },
+    },
+    {
+      name: "playwright",
+      testDir: "./tests/UI/playwright/specs",
+      use: { ...devices['Desktop Chrome'],
+      baseURL: "https://www.playwright.dev/"
+       },
     },
 
     // {

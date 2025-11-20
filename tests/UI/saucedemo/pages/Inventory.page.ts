@@ -26,3 +26,7 @@ export class InventoryPage {
     await this.page.click(".shopping_cart_link");
   }
 }
+
+// 1) addToCartByTitle()
+// 2) removeFromCartByTitle()
+// 3) getPriceByTitle()
