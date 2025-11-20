@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { InventoryPage } from "../../saucedemo/pages/Inventory.page";
-import { CartPage } from "../../saucedemo/pages/Cart.page";
-import { LoginPage } from "../../saucedemo/pages/Login.page";
+import { InventoryPage } from "../pages/Inventory.page";
+import { CartPage } from "../pages/Cart.page";
+import { LoginPage } from "../pages/Login.page";
 
 test.describe("Check cart", () => {
   let inventoryPage: InventoryPage;
@@ -27,7 +27,7 @@ test.describe("Check cart", () => {
       tag: ["@positive"],
       annotation: {
         type: "description",
-        description: "Mocha coffee is successfully added to Total",
+        description: "User successfully logged in with valid credentials",
       },
     },
     async ({ page }) => {
@@ -43,7 +43,7 @@ test.describe("Check cart", () => {
       tag: ["@positive"],
       annotation: {
         type: "description",
-        description: "Mocha coffee is successfully added to Total",
+        description: "User successfully added item to cart",
       },
     }, async ({ page }) => {
       await inventoryPage.clickInventory();

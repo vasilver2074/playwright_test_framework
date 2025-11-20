@@ -10,14 +10,29 @@ test.describe("Main Page tests", () => {
     await douPage.navigate();
   });
 
-  test("Verify element navigation displaying for header", async ({ page }) => {
+  test("PS-001 Verify element navigation displaying for header",
+    {
+      tag: ["@positive"],
+      annotation: {
+        type: "description",
+        description: "element navigation is displaying in header",
+      },
+    },
+    async ({ page }) => {
 
-    await douPage.checkElementsVisibility();
-  });
+      await douPage.checkElementsVisibility();
+    });
 
-  test("Verify element navigation name for header", async ({ page }) => {
-    await douPage.checkElementsText();
-  });
+  test("PS-002 Verify element navigation name for header", {
+    tag: ["@positive"],
+    annotation: {
+      type: "description",
+      description: "element navigation name is displaying in header",
+    },
+  },
+    async ({ page }) => {
+      await douPage.checkElementsText();
+    });
 
   //   test("Verify element navigation attributes href for header", async ({page}) => {
   //     await douPage.checkElementsHrefAttribute();
