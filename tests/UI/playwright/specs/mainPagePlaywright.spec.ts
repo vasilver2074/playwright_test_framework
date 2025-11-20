@@ -1,5 +1,5 @@
-import { test, expect } from "../../fixtures/mainPage";
-import { MainPage } from "../../pages/playwright/Main.page";
+import { test, expect } from "../fixtures/mainPage";
+import { MainPage } from "../../playwright/pages/Main.page";
 
 test.describe("Main Page tests", () => {
 

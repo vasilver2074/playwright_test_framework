@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
-import postRequest from "../API/testData/postRequestBody.json";
+import postRequest from "../booker/testData/postRequestBody.json";
 import { DateTime } from "luxon";
 import { faker } from "@faker-js/faker";
-import { stringFormat } from "../API/utils/common";
+import { stringFormat } from "../booker/utils/common";
 //import { dynamicPostRequest } from "../API/testData/dynamicRequestBody.json";
-let dynamicPostRequest = require("../API/testData/dynamicRequestBody.json");
+let dynamicPostRequest = require("../booker/testData/dynamicRequestBody.json");
 
 test.describe("API Requests", () => {
   test("Create POST API request using static request body", async ({

@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import { MainPage } from '../pages/playwright/Main.page';
+import { MainPage } from "../../playwright/pages/Main.page";
 
 // Declare the types of your fixtures.
 type MyFixtures = {
