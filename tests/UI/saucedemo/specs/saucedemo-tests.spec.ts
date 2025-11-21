@@ -18,8 +18,8 @@ test.describe("Check cart", () => {
     cartPage = new CartPage(page);
     loginPage = new LoginPage(page);
 
-    await inventoryPage.navigate();
-    await loginPage.login("standard_user", "secret_sauce");
+    await loginPage.navigate("https://www.saucedemo.com/");
+    await loginPage.login(user.username, user.password);
   });
 
   test("PS-001 authorization: successful login",
@@ -32,10 +32,8 @@ test.describe("Check cart", () => {
     },
     async ({ page }) => {
 
-      await loginPage.navigate();
-      await loginPage.login(user.username, user.password);
-
       expect(page.url()).toContain("/inventory.html");
+      
     });
 
   test("PS-002 Add to cart: successful add item to cart",
@@ -46,6 +44,7 @@ test.describe("Check cart", () => {
         description: "User successfully added item to cart",
       },
     }, async ({ page }) => {
+      await inventoryPage.navigate("https://www.saucedemo.com/inventory.html");
       await inventoryPage.clickInventory();
       await inventoryPage.addItemToCart();
       await inventoryPage.openCart();

@@ -1,10 +1,10 @@
 import { Page, expect } from "@playwright/test";
+import { BasePage } from "./BasePage.page";
 
-export class InventoryPage {
-  constructor(private page: Page) {}
+export class InventoryPage extends BasePage {
 
-  async navigate() {
-    await this.page.goto("https://www.saucedemo.com/inventory.html");
+  constructor(page: Page) {
+    super(page);
   }
 
   async addItemToCart() {

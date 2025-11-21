@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
+import { BasePage } from "./BasePage.page";
 
-export class LoginPage {
-  constructor(private page: Page) {}
+export class LoginPage extends BasePage {
 
-  async navigate() {
-    await this.page.goto("https://www.saucedemo.com/");
+  constructor(page: Page) {
+    super(page);
   }
 
   async login(username: string, password: string) {

@@ -1,7 +1,11 @@
 import { Page } from "@playwright/test";
 
 export class CartPage {
-  constructor(private page: Page) {}
+  private page: Page;
+  
+  constructor(page: Page) {
+    this.page = page;
+  }
 
   async getCartItems(): Promise<string[]> {
     return this.page.locator(".inventory_item_name ").allTextContents();
