@@ -1,15 +1,19 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage.page";
 
 export class CheckoutStepTwoPage extends BasePage {
 
+  readonly buttonFinish: Locator;
+  readonly buttonCancel: Locator;
+  readonly price: Locator;
+
   constructor(page: Page) {
     super(page);
 
-    page.locator('button[#finish]');
-    page.locator('button[#cancel]');
-    page.locator('[data-test="inventory-item-price"]');
+    this.buttonFinish = page.locator('button[#finish]');
+    this.buttonCancel = page.locator('button[#cancel]');
+    this.price = page.locator('[data-test="inventory-item-price"]');
   }
-  
+
 
 }

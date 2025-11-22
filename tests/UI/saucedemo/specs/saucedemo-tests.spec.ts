@@ -58,8 +58,33 @@ test.describe("Check cart", () => {
 
       await cartPage.navigate("https://www.saucedemo.com/cart.html");
       const cartItems = await cartPage.getCartItems();
-      
+
       expect(cartItems).toContain("Sauce Labs Backpack");
+    });
+
+    test("PS-003 Remove cart inventory by name: successful remove item from cart",
+    {
+      tag: ["@positive"],
+      annotation: {
+        type: "description",
+        description: "User successfully removed inventory item from cart",
+      },
+    }, async ({ page }) => {
+      await inventoryPage.navigate("https://www.saucedemo.com/inventory.html");
+      await inventoryPage.addToCartByTitle(page, inventory["Sauce Labs Bolt T-Shirt"]);
+
+      await cartPage.navigate("https://www.saucedemo.com/cart.html");
+      const cartItems = await cartPage.getCartItems();
+      
+      expect(cartItems).toContain("Sauce Labs Bolt T-Shirt");
+
+      await inventoryPage.navigate("https://www.saucedemo.com/inventory.html");
+      await inventoryPage.removeFromCartByTitle(page, inventory["Sauce Labs Bolt T-Shirt"]);
+
+      await cartPage.navigate("https://www.saucedemo.com/cart.html");
+      const updatedCartItems = await cartPage.getCartItems();
+
+      expect(updatedCartItems).not.toContain("Sauce Labs Bolt T-Shirt");
     });
 
     
