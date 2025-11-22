@@ -15,5 +15,16 @@ export class CheckoutStepTwoPage extends BasePage {
     this.price = page.locator('[data-test="inventory-item-price"]');
   }
 
+  async finishCheckout(): Promise<void> {
+    await this.buttonFinish.click();
+  }
+
+  async cancelCheckout(): Promise<void> {
+    await this.buttonCancel.click();
+  }
+
+  async getPrice(): Promise<string> {
+    return await this.price.innerText();
+  }
 
 }
