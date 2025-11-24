@@ -12,18 +12,18 @@ export class InventoryPage extends BasePage {
 
   }
 
-  async addToCartByTitle(page: Page, productTitle: string):Promise<void> {
+  async addToCartByTitle(page: Page, productTitle: string): Promise<void> {
 
     await page.locator(`#item_${productTitle}_title_link`).click();
     await this.addToCartButton.click();
-  
+
   }
 
   async removeFromCartByTitle(page: Page, productTitle: string): Promise<void> {
 
     await page.locator(`#item_${productTitle}_title_link`).click();
 
-    const removeFromCartButton = page.locator('[data-test="remove"]'); 
+    const removeFromCartButton = page.locator('[data-test="remove"]');
     await removeFromCartButton.click();
 
   }

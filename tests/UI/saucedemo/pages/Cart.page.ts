@@ -7,7 +7,7 @@ export class CartPage extends BasePage {
   readonly checkoutButton: Locator;
   readonly continueShoppingButton: Locator;
   readonly price: Locator;
-  
+
   constructor(page: Page) {
     super(page);
     this.remoeButton = page.getByRole('button', { name: 'Remove' });
