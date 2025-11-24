@@ -7,14 +7,16 @@ export class CheckoutStepOnePage extends BasePage {
   readonly lastName: Locator;
   readonly postalCode: Locator;
   readonly continueBtn: Locator;
+  readonly buttonCancel: Locator;
 
   constructor(page: Page) {
     super(page);
 
-    this.firstName = page.locator('input[#first-name]');
-    this.lastName = page.locator('input[#last-name]');
-    this.postalCode = page.locator('input[#postal-code]');
-    this.continueBtn = page.locator('input[#continue]');
+    this.firstName = page.locator('#first-name');
+    this.lastName = page.locator('#last-name');
+    this.postalCode = page.locator('#postal-code');
+    this.continueBtn = page.locator('#continue');
+    this.buttonCancel = page.locator('#cancel');
   }
 
   async fillForm(first: string, last: string, zip: string) {
@@ -24,6 +26,9 @@ export class CheckoutStepOnePage extends BasePage {
     await this.continueBtn.click();
   }
 
+  async cancelCheckout(): Promise<void> {
+    await this.buttonCancel.click();
+  }
 
 }
 

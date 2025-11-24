@@ -10,8 +10,8 @@ export class CheckoutStepTwoPage extends BasePage {
   constructor(page: Page) {
     super(page);
 
-    this.buttonFinish = page.locator('button[#finish]');
-    this.buttonCancel = page.locator('button[#cancel]');
+    this.buttonFinish = page.locator('button#finish');
+    this.buttonCancel = page.locator('button#cancel');
     this.price = page.locator('[data-test="inventory-item-price"]');
   }
 
