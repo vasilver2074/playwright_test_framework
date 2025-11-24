@@ -35,8 +35,3 @@ export class InventoryPage extends BasePage {
 
   }
 }
-
-
-// 1) addToCartByTitle()
-// 2) removeFromCartByTitle()
-// 3) getPriceByTitle()

@@ -120,7 +120,7 @@ test.describe("Check cart", () => {
 
     });
 
-    test("PS-005 Checkout process: get price on checkout step two",
+  test("PS-005 Checkout process: get price on checkout step two",
     {
       tag: ["@positive"],
       annotation: {

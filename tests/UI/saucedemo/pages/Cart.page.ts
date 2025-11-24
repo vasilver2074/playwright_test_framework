@@ -38,8 +38,3 @@ export class CartPage extends BasePage {
     return await productCard.locator('[data-test="inventory-item-price"]').innerText();
   }
 }
-
-// 1) removeFromCartByTitle()
-// 2) getPriceByTitle()
-// 3) checkout()
-// 4) continueShopping()

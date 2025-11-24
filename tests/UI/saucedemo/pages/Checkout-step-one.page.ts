@@ -31,9 +31,3 @@ export class CheckoutStepOnePage extends BasePage {
   }
 
 }
-
-// 1) fillFirstName()
-// 2) fillLastName()
-// 3) fillZipCode()
-// 4) continue()
-//https://www.saucedemo.com/checkout-step-one.html
