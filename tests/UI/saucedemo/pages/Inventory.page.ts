@@ -28,10 +28,10 @@ export class InventoryPage extends BasePage {
 
   }
 
-  async getPriceByTitle(productTitle: string): Promise<string> {
+  async getPriceByTitle(page: Page, productTitle: string): Promise<string> {
 
-    const productCard = this.page.locator(`.product-card:has-text("${productTitle}")`);
-    return await productCard.locator('[data-test="inventory-item-price"]').innerText();
+    await page.locator(`#item_${productTitle}_title_link`).click();
+    return await page.locator('[data-test="inventory-item-price"]').innerText();
 
   }
 }
