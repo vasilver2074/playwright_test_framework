@@ -110,11 +110,11 @@ export class MainPage {
     ];
   }
 
-  async openMainPage() {
+  async openMainPage(): Promise<void> {
     await this.page.goto("https://playwright.dev/");
   }
 
-  async checkElementsVisibility() {
+  async checkElementsVisibility() : Promise<void> {
     for (const { locator, name } of this.elements) {
       await test.step(`Verify displaying Playwright ${name}`, async () => {
         await expect.soft(locator(this.page)).toBeVisible();
@@ -122,7 +122,7 @@ export class MainPage {
     }
   }
 
-  async checkElementsText() {
+  async checkElementsText(): Promise<void> {
     for (const { locator, name, text } of this.elements) {
       if (text) {
         await test.step(`Verify element's name of ${name}`, async () => {
@@ -132,7 +132,7 @@ export class MainPage {
     }
   }
 
-  async checkElementsHrefAttribute() {
+  async checkElementsHrefAttribute(): Promise<void> {
     for (const { locator, name, attribute } of this.elements) {
       if (attribute) {
         if (attribute) {
@@ -146,35 +146,35 @@ export class MainPage {
     }
   }
 
-  async clickSwitchLightModeButton(){
+  async clickSwitchLightModeButton(): Promise<void> {
     await this.page
       .getByRole("button", { name: "Switch between dark and light" })
       .click();
   }
 
-  async doubleClickSwitchDarkModeButton(){
+  async doubleClickSwitchDarkModeButton(): Promise<void> {
     await this.page
       .getByRole("button", { name: "Switch between dark and light" })
       .dblclick();
   }
 
-  async checkLightThemeAttributesValue(){
+  async checkLightThemeAttributesValue(): Promise<void> {
     await expect
       .soft(this.page.getByRole("button", { name: "Switch between dark and light" }))
       .toHaveAttribute("title", "light mode");
   }
 
-  async checkDarkThemeAttributesValue(){
+  async checkDarkThemeAttributesValue(): Promise<void> {
     await expect
       .soft(this.page.getByRole("button", { name: "Switch between dark and light" }))
       .toHaveAttribute("title", "dark mode");
   }
 
-  async checkLayoutWithLightMode(){
+  async checkLayoutWithLightMode(): Promise<void> {
     await expect(this.page).toHaveScreenshot(`pageWithLightMode.png`);
   }
 
-  async checkLayoutWithDarkMode(){
+  async checkLayoutWithDarkMode(): Promise<void> {
     await expect(this.page).toHaveScreenshot(`pageWithDarkMode.png`);
   }
 }

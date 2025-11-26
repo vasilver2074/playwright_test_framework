@@ -63,11 +63,11 @@ export class DouPage {
     ];
   }
 
-  async navigate() {
+  async navigate(): Promise<void> {
     await this.page.goto("https://dou.ua/");
   }
 
-  async checkElementsVisibility() {
+  async checkElementsVisibility() : Promise<void> {
     for (const { locator, name } of this.elements) {
       await test.step(`Verify displaying Playwright ${name}`, async () => {
         await expect.soft(locator(this.page)).toBeVisible();
@@ -75,7 +75,7 @@ export class DouPage {
     }
   }
 
-  async checkElementsText() {
+  async checkElementsText(): Promise<void> {
     for (const { locator, name, text } of this.elements) {
       if (text) {
         await test.step(`Verify element's name of ${name}`, async () => {
