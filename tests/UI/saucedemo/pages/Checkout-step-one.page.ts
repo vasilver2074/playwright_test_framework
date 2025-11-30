@@ -3,30 +3,30 @@ import { BasePage } from "./BasePage.page";
 
 export class CheckoutStepOnePage extends BasePage {
 
-  readonly firstNameLocator: Locator;
-  readonly lastNameLocator: Locator;
-  readonly postalCodeLocator: Locator;
-  readonly continueBatonLocator: Locator;
-  readonly buttonCancelLocator: Locator;
+  readonly firstNameInputLocator: Locator;
+  readonly lastNameInputLocator: Locator;
+  readonly postalCodeInputLocator: Locator;
+  readonly continueButtonLocator: Locator;
+  readonly cancelButtonLocator: Locator;
   constructor(page: Page) {
     super(page);
 
-    this.firstNameLocator = page.locator('#first-name');
-    this.lastNameLocator = page.locator('#last-name');
-    this.postalCodeLocator = page.locator('#postal-code');
-    this.continueBatonLocator = page.locator('#continue');
-    this.buttonCancelLocator = page.locator('#cancel');
+    this.firstNameInputLocator = page.locator('#first-name');
+    this.lastNameInputLocator = page.locator('#last-name');
+    this.postalCodeInputLocator = page.locator('#postal-code');
+    this.continueButtonLocator = page.locator('#continue');
+    this.cancelButtonLocator = page.locator('#cancel');
   }
 
   async fillForm(first: string, last: string, zip: string) {
-    await this.firstNameLocator.fill(first);
-    await this.lastNameLocator.fill(last);
-    await this.postalCodeLocator.fill(zip);
-    await this.continueBatonLocator.click();
+    await this.firstNameInputLocator.fill(first);
+    await this.lastNameInputLocator.fill(last);
+    await this.postalCodeInputLocator.fill(zip);
+    await this.continueButtonLocator.click();
   }
 
   async cancelCheckout(): Promise<void> {
-    await this.buttonCancelLocator.click();
+    await this.cancelButtonLocator.click();
   }
 
 }

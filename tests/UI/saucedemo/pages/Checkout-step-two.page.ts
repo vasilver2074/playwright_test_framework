@@ -3,28 +3,28 @@ import { BasePage } from "./BasePage.page";
 
 export class CheckoutStepTwoPage extends BasePage {
 
-  readonly buttonFinishLocator: Locator;
-  readonly buttonCancelLocator: Locator;
-  readonly priceLocator: Locator;
+  readonly finishButtonLocator: Locator;
+  readonly cancelButtonLocator: Locator;
+  readonly priceValueLocator: Locator;
 
   constructor(page: Page) {
     super(page);
 
-    this.buttonFinishLocator = page.locator('button#finish');
-    this.buttonCancelLocator = page.locator('button#cancel');
-    this.priceLocator = page.locator('[data-test="inventory-item-price"]');
+    this.finishButtonLocator = page.locator('button#finish');
+    this.cancelButtonLocator = page.locator('button#cancel');
+    this.priceValueLocator = page.locator('[data-test="inventory-item-price"]');
   }
 
   async finishCheckout(): Promise<void> {
-    await this.buttonFinishLocator.click();
+    await this.finishButtonLocator.click();
   }
 
   async cancelCheckout(): Promise<void> {
-    await this.buttonCancelLocator.click();
+    await this.cancelButtonLocator.click();
   }
 
   async getPrice(): Promise<string> {
-    return await this.priceLocator.innerText();
+    return await this.priceValueLocator.innerText();
   }
 
 }

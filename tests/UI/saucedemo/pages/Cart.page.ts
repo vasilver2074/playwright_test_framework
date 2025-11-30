@@ -6,18 +6,21 @@ export class CartPage extends BasePage {
   readonly removeButtonLocator: Locator;
   readonly checkoutButtonLocator: Locator;
   readonly continueShoppingButtonLocator: Locator;
-  readonly priceLocator: Locator;
+  readonly priceValueLocator: Locator;
+  readonly cartItemFieldLocator: Locator;
+
 
   constructor(page: Page) {
     super(page);
     this.removeButtonLocator = page.getByRole('button', { name: 'Remove' });
     this.checkoutButtonLocator = page.getByRole('button', { name: 'Checkout' });
     this.continueShoppingButtonLocator = page.locator('button[#continue-shopping]');
-    this.priceLocator = page.locator('[data-test="inventory-item-price"]');
+    this.priceValueLocator = page.locator('[data-test="inventory-item-price"]');
+    this.cartItemFieldLocator = page.locator('.inventory_item_name');
   }
 
   async getCartItems(): Promise<string[]> {
-    return this.page.locator(".inventory_item_name ").allTextContents();
+    return this.cartItemFieldLocator.allTextContents();
   }
 
   async checkout(): Promise<void> {
