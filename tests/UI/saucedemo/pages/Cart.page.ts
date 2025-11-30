@@ -3,17 +3,17 @@ import { BasePage } from "./BasePage.page";
 
 export class CartPage extends BasePage {
 
-  readonly remoeButton: Locator
-  readonly checkoutButton: Locator;
-  readonly continueShoppingButton: Locator;
-  readonly price: Locator;
+  readonly removeButtonLocator: Locator;
+  readonly checkoutButtonLocator: Locator;
+  readonly continueShoppingButtonLocator: Locator;
+  readonly priceLocator: Locator;
 
   constructor(page: Page) {
     super(page);
-    this.remoeButton = page.getByRole('button', { name: 'Remove' });
-    this.checkoutButton = page.getByRole('button', { name: 'Checkout' });
-    this.continueShoppingButton = page.locator('button[#continue-shopping]');
-    this.price = page.locator('[data-test="inventory-item-price"]');
+    this.removeButtonLocator = page.getByRole('button', { name: 'Remove' });
+    this.checkoutButtonLocator = page.getByRole('button', { name: 'Checkout' });
+    this.continueShoppingButtonLocator = page.locator('button[#continue-shopping]');
+    this.priceLocator = page.locator('[data-test="inventory-item-price"]');
   }
 
   async getCartItems(): Promise<string[]> {
@@ -21,16 +21,16 @@ export class CartPage extends BasePage {
   }
 
   async checkout(): Promise<void> {
-    await this.checkoutButton.click();
+    await this.checkoutButtonLocator.click();
   }
 
   async continueShopping(): Promise<void> {
-    await this.continueShoppingButton.click();
+    await this.continueShoppingButtonLocator.click();
   }
 
   async removeFromCartByTitle(productTitle: string): Promise<void> {
     await this.page.locator(`#item_${productTitle}_title_link`).click();
-    await this.remoeButton.click();
+    await this.removeButtonLocator.click();
   }
 
   async getPriceByTitle(productTitle: string): Promise<string> {

@@ -3,19 +3,19 @@ import { BasePage } from "./BasePage.page";
 
 export class InventoryPage extends BasePage {
 
-  readonly addToCartButton: Locator;
+  readonly addToCartButtonLocator: Locator;
 
   constructor(page: Page) {
     super(page);
 
-    this.addToCartButton = page.locator('[data-test="add-to-cart"]');
+    this.addToCartButtonLocator = page.locator('[data-test="add-to-cart"]');
 
   }
 
   async addToCartByTitle(page: Page, productTitle: string): Promise<void> {
 
     await page.locator(`#item_${productTitle}_title_link`).click();
-    await this.addToCartButton.click();
+    await this.addToCartButtonLocator.click();
 
   }
 
