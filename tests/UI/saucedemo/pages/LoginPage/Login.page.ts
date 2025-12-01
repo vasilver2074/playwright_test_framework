@@ -3,7 +3,7 @@ import { BasePage } from "../BasePage/BasePage.page";
 import { LoginPageLocators } from "./LoginPageLocators";
 
 export class LoginPage extends BasePage {
-  readonly locators: LoginPageLocators = new LoginPageLocators(this.page);
+  readonly locators: LoginPageLocators = new LoginPageLocators(this.page.locator('[data-test="login-container"]'));
 
   constructor(page: Page) {
     super(page);

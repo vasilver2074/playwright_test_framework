@@ -3,10 +3,9 @@ import { BasePageLocators } from "../BasePage/BasePageLocators";
 
 export class CartPageLocators extends BasePageLocators {
 
-    readonly removeButtonLocator: Locator = this.page.getByRole('button', { name: 'Remove' });
-    readonly checkoutButtonLocator: Locator = this.page.getByRole('button', { name: 'Checkout' });
-    readonly continueShoppingButtonLocator: Locator = this.page.locator('button[#continue-shopping]');
-    readonly priceValueLocator: Locator = this.page.locator('[data-test="inventory-item-price"]');
-    readonly cartItemFieldLocator: Locator = this.page.locator('.inventory_item_name');
-
+    readonly removeButtonLocator: Locator = this.baseLocator.getByRole('button', { name: 'Remove' });
+    readonly checkoutButtonLocator: Locator = this.baseLocator.getByRole('button', { name: 'Checkout' });
+    readonly continueShoppingButtonLocator: Locator = this.baseLocator.locator('button[#continue-shopping]');
+    readonly priceValueLocator: Locator = this.baseLocator.locator('[data-test="inventory-item-price"]');
+    readonly cartItemFieldLocator: Locator = this.baseLocator.locator('.inventory_item_name');
 }

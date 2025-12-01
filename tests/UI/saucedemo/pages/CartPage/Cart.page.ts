@@ -4,7 +4,7 @@ import { CartPageLocators } from "./CartPageLocators";
 
 export class CartPage extends BasePage {
 
-  readonly locators: CartPageLocators = new CartPageLocators(this.page);
+  readonly locators: CartPageLocators = new CartPageLocators(this.page.locator('#contents_wrapper'));
   
   constructor(page: Page) {
     super(page);

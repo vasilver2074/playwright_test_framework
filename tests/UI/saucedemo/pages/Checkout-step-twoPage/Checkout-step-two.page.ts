@@ -4,7 +4,7 @@ import { CheckoutStepTwoPageLocators } from "./Checkout-step-twoPageLocators";
 
 export class CheckoutStepTwoPage extends BasePage {
 
-  readonly locators: CheckoutStepTwoPageLocators = new CheckoutStepTwoPageLocators(this.page);
+  readonly locators: CheckoutStepTwoPageLocators = new CheckoutStepTwoPageLocators(this.page.locator('#contents_wrapper'));
 
   constructor(page: Page) {
     super(page);

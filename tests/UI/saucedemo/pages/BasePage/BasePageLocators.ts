@@ -1,9 +1,9 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
 export abstract class BasePageLocators {
-    protected page: Page;
+    protected baseLocator: Locator;
 
-    constructor(page: Page) {
-        this.page = page;
+    constructor(baseLocator: Locator) {
+        this.baseLocator = baseLocator;
     }
 }

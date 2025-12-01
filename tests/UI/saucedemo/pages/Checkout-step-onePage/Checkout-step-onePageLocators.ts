@@ -3,9 +3,9 @@ import { BasePageLocators } from "../BasePage/BasePageLocators";
 
 export class CheckoutStepOnePageLocators extends BasePageLocators {
 
-    readonly firstNameInputLocator: Locator = this.page.locator('#first-name');
-    readonly lastNameInputLocator: Locator = this.page.locator('#last-name');
-    readonly postalCodeInputLocator: Locator = this.page.locator('#postal-code');
-    readonly continueButtonLocator: Locator = this.page.locator('#continue');
-    readonly cancelButtonLocator: Locator = this.page.locator('#cancel');
+    readonly firstNameInputLocator: Locator = this.baseLocator.locator('#first-name');
+    readonly lastNameInputLocator: Locator = this.baseLocator.locator('#last-name');
+    readonly postalCodeInputLocator: Locator = this.baseLocator.locator('#postal-code');
+    readonly continueButtonLocator: Locator = this.baseLocator.locator('#continue');
+    readonly cancelButtonLocator: Locator = this.baseLocator.locator('#cancel');
 }

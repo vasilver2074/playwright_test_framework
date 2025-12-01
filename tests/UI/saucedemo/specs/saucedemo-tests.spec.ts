@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
-import { InventoryPage } from "../pages/InventoryPage/Inventory.page";
+import { ProductsPage } from "../pages/ProductsPage/Products.page";
 import { CartPage } from "../pages/CartPage/Cart.page";
 import { LoginPage } from "../pages/LoginPage/Login.page";
 import { CheckoutStepOnePage } from "../pages/Checkout-step-onePage/Checkout-step-one.page";
 import { CheckoutStepTwoPage } from "../pages/Checkout-step-twoPage/Checkout-step-two.page";
 
 test.describe("Check cart", () => {
-  let inventoryPage: InventoryPage;
+  let productsPage: ProductsPage;
   let cartPage: CartPage;
   let loginPage: LoginPage;
   let checkoutStepOnePage: CheckoutStepOnePage;
@@ -30,7 +30,7 @@ test.describe("Check cart", () => {
   }
 
   test.beforeEach(async ({ page }) => {
-    inventoryPage = new InventoryPage(page);
+    productsPage = new ProductsPage(page);
     cartPage = new CartPage(page);
     loginPage = new LoginPage(page);
     checkoutStepOnePage = new CheckoutStepOnePage(page);
@@ -63,7 +63,7 @@ test.describe("Check cart", () => {
       },
     }, async ({ page }) => {
 
-      await inventoryPage.addToCartByTitle(page, inventory["Sauce Labs Backpack"]);
+      await productsPage.addToCartByTitle(page, inventory["Sauce Labs Backpack"]);
 
       await cartPage.navigate("https://www.saucedemo.com/cart.html");
       const cartItems = await cartPage.getCartItems();
@@ -80,15 +80,15 @@ test.describe("Check cart", () => {
       },
     }, async ({ page }) => {
 
-      await inventoryPage.addToCartByTitle(page, inventory["Sauce Labs Bolt T-Shirt"]);
+      await productsPage.addToCartByTitle(page, inventory["Sauce Labs Bolt T-Shirt"]);
 
       await cartPage.navigate("https://www.saucedemo.com/cart.html");
       const cartItems = await cartPage.getCartItems();
 
       expect(cartItems).toContain("Sauce Labs Bolt T-Shirt");
 
-      await inventoryPage.navigate("https://www.saucedemo.com/inventory.html");
-      await inventoryPage.removeFromCartByTitle(page, inventory["Sauce Labs Bolt T-Shirt"]);
+      await productsPage.navigate("https://www.saucedemo.com/inventory.html");
+      await productsPage.removeFromCartByTitle(page, inventory["Sauce Labs Bolt T-Shirt"]);
 
       await cartPage.navigate("https://www.saucedemo.com/cart.html");
       const updatedCartItems = await cartPage.getCartItems();
@@ -105,7 +105,7 @@ test.describe("Check cart", () => {
       },
     }, async ({ page }) => {
 
-      await inventoryPage.addToCartByTitle(page, inventory["Sauce Labs Onesie"]);
+      await productsPage.addToCartByTitle(page, inventory["Sauce Labs Onesie"]);
 
       await cartPage.navigate("https://www.saucedemo.com/cart.html");
       const cartItems = await cartPage.getCartItems();
@@ -129,7 +129,7 @@ test.describe("Check cart", () => {
       },
     }, async ({ page }) => {
 
-      await inventoryPage.addToCartByTitle(page, inventory["Test.allTheThings() T-Shirt (Red)"]);
+      await productsPage.addToCartByTitle(page, inventory["Test.allTheThings() T-Shirt (Red)"]);
 
       await cartPage.navigate("https://www.saucedemo.com/cart.html");
       const cartItems = await cartPage.getCartItems();

@@ -1,10 +1,10 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { BasePage } from "../BasePage/BasePage.page";
-import { InventoryPageLocators } from "./InventoryPageLocators";
+import { ProductsPageLocators } from "./ProductsPageLocators";
 
-export class InventoryPage extends BasePage {
+export class ProductsPage extends BasePage {
 
-  readonly locators: InventoryPageLocators = new InventoryPageLocators(this.page);
+  readonly locators: ProductsPageLocators = new ProductsPageLocators(this.page.locator('#contents_wrapper'));
 
   constructor(page: Page) {
     super(page);
