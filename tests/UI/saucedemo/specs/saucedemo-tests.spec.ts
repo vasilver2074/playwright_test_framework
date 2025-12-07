@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
-import { ProductsPage } from "../pages/ProductsPage/Products.page";
-import { CartPage } from "../pages/CartPage/Cart.page";
-import { LoginPage } from "../pages/LoginPage/Login.page";
-import { CheckoutStepOnePage } from "../pages/Checkout-step-onePage/Checkout-step-one.page";
-import { CheckoutStepTwoPage } from "../pages/Checkout-step-twoPage/Checkout-step-two.page";
+import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
+import { CartPage } from "../pages/CartPage/CartPage";
+import { LoginPage } from "../pages/LoginPage/LoginPage";
+import { CheckoutStepOnePage } from "../pages/Checkout-step-onePage/Checkout-step-onePage";
+import { CheckoutStepTwoPage } from "../pages/Checkout-step-twoPage/Checkout-step-twoPage";
 
 test.describe("Check cart", () => {
   let productsPage: ProductsPage;

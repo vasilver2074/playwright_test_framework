@@ -1,13 +1,9 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
 export class BaseComponents {
-    protected page: Page;
+    protected baseLocator: Locator;
 
-    constructor(page: Page) {
-        this.page = page;
-    }
-
-    async navigate(url: string) : Promise<void> {
-        await this.page.goto(url);
+    constructor(baseLocator: Locator) {
+        this.baseLocator = baseLocator;
     }
 }
