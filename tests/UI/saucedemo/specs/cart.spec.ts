@@ -1,18 +1,9 @@
-import test, { expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage/LoginPage";
-import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
-import { CartPage } from "../pages/CartPage/CartPage";
+import { expect } from "@playwright/test";
+import { test } from "../fixtures/fixtures";
 
 test.describe("Cart Page Tests", () => {
-    let loginPage: LoginPage;
-    let productsPage: ProductsPage;
-    let cartPage: CartPage;
 
-    test.beforeEach(async ({ page }) => {
-        loginPage = new LoginPage(page);
-        productsPage = new ProductsPage(page);
-        cartPage = new CartPage(page);
-
+    test.beforeEach(async ({ loginPage, productsPage, cartPage }) => {
         await loginPage.navigate("https://www.saucedemo.com/");
         await loginPage.fillUsername("standard_user");
         await loginPage.fillPassword("secret_sauce");
@@ -27,7 +18,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-001 - Remove product from cart by title",
         { tag: ["@regression"] },
-        async ({ page }) => {
+        async ({ cartPage }) => {
             const productName = "Sauce Labs Backpack";
 
             expect(await cartPage.isProductInCart(productName)).toBe(true);
@@ -40,7 +31,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-002 - Checkout navigation",
         { tag: ["@regression"] },
-        async ({ page }) => {
+        async ({ cartPage, page }) => {
             await cartPage.checkout();
 
             await expect(page).toHaveURL(/.*checkout-step-one/);
@@ -49,7 +40,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-003 - Continue shopping navigation",
         { tag: ["@regression"] },
-        async ({ page }) => {
+        async ({ cartPage, productsPage, page }) => {
             await cartPage.continueShopping();
 
             await expect(page).toHaveURL(/.*inventory/);
@@ -60,7 +51,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-004 - Remove multiple products from cart",
         { tag: ["@regression"] },
-        async ({ page }) => {
+        async ({ cartPage, productsPage }) => {
             await cartPage.continueShopping();
             await productsPage.addToCartByTitle("Sauce Labs Bike Light");
             await productsPage.addToCartByTitle("Sauce Labs Bolt T-Shirt");

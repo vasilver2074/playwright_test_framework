@@ -1,16 +1,11 @@
-import test, { expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage/LoginPage";
-import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
+import { expect } from "@playwright/test";
+import { test } from "../fixtures/fixtures";
 
 test.describe("Products Landing Page Tests", () => {
-  let loginPage: LoginPage;
-  let productsPage: ProductsPage;
 
-  test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
-    productsPage = new ProductsPage(page);
+  test.beforeEach(async ({ loginPage}) => {
 
-    await page.goto("https://www.saucedemo.com/");
+    await loginPage.navigate("https://www.saucedemo.com/");
     await loginPage.fillUsername("standard_user");
     await loginPage.fillPassword("secret_sauce"); //зробити один метод
     await loginPage.clickLogin();
@@ -19,7 +14,7 @@ test.describe("Products Landing Page Tests", () => {
   test(
     "PLP-001 - Add product to cart",
     { tag: ["@regression"] },
-    async ({ page }) => {
+    async ({ productsPage }) => {
       const productName = "Sauce Labs Backpack";
 
       await productsPage.addToCartByTitle(productName);
@@ -32,7 +27,7 @@ test.describe("Products Landing Page Tests", () => {
   test(
     "PLP-002 - Remove product from cart",
     { tag: ["@regression"] },
-    async ({ page }) => {
+    async ({ productsPage }) => {
       const productName = "Sauce Labs Bike Light";
 
       // Додаємо
@@ -48,7 +43,7 @@ test.describe("Products Landing Page Tests", () => {
   test(
     "PLP-003 - Get correct product price",
     { tag: ["@regression"] },
-    async ({ page }) => {
+    async ({ productsPage }) => {
       const productName = "Sauce Labs Backpack";
 
       const price = await productsPage.getPriceByTitle(productName);
@@ -60,7 +55,7 @@ test.describe("Products Landing Page Tests", () => {
   test(
     "PLP-004 - Add multiple products to cart",
     { tag: ["@regression"] },
-    async ({ page }) => {
+    async ({ productsPage }) => {
       const products = [
         "Sauce Labs Backpack",
         "Sauce Labs Bike Light",

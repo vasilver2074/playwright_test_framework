@@ -1,17 +1,10 @@
-
-import test, { expect } from "@playwright/test";
+import { expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
-import { LoginPage } from "../pages/LoginPage/LoginPage";
-import { ProductsPage } from "../pages/ProductsPage/ProductsPage";
+import { test } from "../fixtures/fixtures";
 
 test.describe("Check cart", () => {
 
-    let productsPage: ProductsPage;
-    let loginPage: LoginPage;
-
-    test.beforeEach(async ({ page }) => {
-        productsPage = new ProductsPage(page);
-        loginPage = new LoginPage(page);
+    test.beforeEach(async ({ loginPage }) => {
 
         await loginPage.navigate("https://www.saucedemo.com/");
 
@@ -20,8 +13,8 @@ test.describe("Check cart", () => {
     test(
         "AUTH-001 - Login as standard user - should be logged",
         { tag: ["@regression"] },
-        async ({ page }) => {
-            
+        async ({ productsPage, loginPage }) => {
+
             await loginPage.fillUsername("standard_user");
             await loginPage.fillPassword("secret_sauce");
             await loginPage.clickLogin();
@@ -34,8 +27,8 @@ test.describe("Check cart", () => {
     test(
         "AUTH-002 - Login as standard user with incorrect password",
         { tag: ["@regression"] },
-        async ({ page }) => {
-            
+        async ({ loginPage }) => {
+
             await loginPage.fillUsername("standard_user");
             await loginPage.fillPassword(faker.internet.password());
             await loginPage.clickLogin();
