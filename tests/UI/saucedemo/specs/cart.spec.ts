@@ -3,11 +3,7 @@ import { test } from "../fixtures/fixtures";
 
 test.describe("Cart Page Tests", () => {
 
-    test.beforeEach(async ({ loginPage, productsPage, cartPage }) => {
-        await loginPage.navigate("https://www.saucedemo.com/");
-        await loginPage.fillUsername("standard_user");
-        await loginPage.fillPassword("secret_sauce");
-        await loginPage.clickLogin();
+    test.beforeEach(async ({ loginPage, productsPage, beforeFixture }) => {
 
         // Додаємо продукт до кошика
         await productsPage.addToCartByTitle("Sauce Labs Backpack");
@@ -18,7 +14,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-001 - Remove product from cart by title",
         { tag: ["@regression"] },
-        async ({ cartPage }) => {
+        async ({ cartPage , beforeFixture}) => {
             const productName = "Sauce Labs Backpack";
 
             expect(await cartPage.isProductInCart(productName)).toBe(true);
@@ -31,7 +27,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-002 - Checkout navigation",
         { tag: ["@regression"] },
-        async ({ cartPage, page }) => {
+        async ({ cartPage, beforeFixture,page }) => {
             await cartPage.checkout();
 
             await expect(page).toHaveURL(/.*checkout-step-one/);
@@ -40,7 +36,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-003 - Continue shopping navigation",
         { tag: ["@regression"] },
-        async ({ cartPage, productsPage, page }) => {
+        async ({ cartPage, productsPage, beforeFixture, page }) => {
             await cartPage.continueShopping();
 
             await expect(page).toHaveURL(/.*inventory/);
@@ -51,7 +47,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-004 - Remove multiple products from cart",
         { tag: ["@regression"] },
-        async ({ cartPage, productsPage }) => {
+        async ({ cartPage, productsPage, beforeFixture }) => {
             await cartPage.continueShopping();
             await productsPage.addToCartByTitle("Sauce Labs Bike Light");
             await productsPage.addToCartByTitle("Sauce Labs Bolt T-Shirt");

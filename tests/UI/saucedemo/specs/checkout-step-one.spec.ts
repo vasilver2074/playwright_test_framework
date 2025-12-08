@@ -4,12 +4,7 @@ import { test } from "../fixtures/fixtures";
 
 test.describe("Checkout Step One Tests", () => {
 
-  test.beforeEach(async ({ loginPage, productsPage, cartPage, }) => {
-
-    await loginPage.navigate("https://www.saucedemo.com/");
-    await loginPage.fillUsername("standard_user");
-    await loginPage.fillPassword("secret_sauce");
-    await loginPage.clickLogin();
+  test.beforeEach(async ({ loginPage, productsPage, cartPage, beforeFixture }) => {
 
     await productsPage.addToCartByTitle("Sauce Labs Backpack");
     await productsPage.goToCart();
@@ -19,7 +14,7 @@ test.describe("Checkout Step One Tests", () => {
 
   test("CHECKOUT-001 - Fill form with Faker data", 
     { tag: ["@regression"] }, 
-    async ({ checkoutStepOnePage, page }) => {
+    async ({ checkoutStepOnePage, beforeFixture, page }) => {
       const firstName = faker.person.firstName();
       const lastName = faker.person.lastName();
       const zipCode = faker.location.zipCode();
@@ -35,7 +30,7 @@ test.describe("Checkout Step One Tests", () => {
 
   test("CHECKOUT-002 - Cancel and return to cart", 
     { tag: ["@regression"] }, 
-    async ({ checkoutStepOnePage, cartPage, page }) => {
+    async ({ checkoutStepOnePage, cartPage, beforeFixture, page }) => {
       await checkoutStepOnePage.cancel();
       await expect(page).toHaveURL(/.*cart/);
       
@@ -45,7 +40,7 @@ test.describe("Checkout Step One Tests", () => {
 
   test("CHECKOUT-003 - Error when First Name is empty", 
     { tag: ["@regression", "@negative"] }, 
-    async ({ checkoutStepOnePage, page }) => {
+    async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.fillLastName("Doe");
       await checkoutStepOnePage.fillZipCode("12345");
       await checkoutStepOnePage.continue();
@@ -59,7 +54,7 @@ test.describe("Checkout Step One Tests", () => {
 
   test("CHECKOUT-004 - Error when Last Name is empty",
     { tag: ["@regression", "@negative"] }, 
-    async ({ checkoutStepOnePage, page }) => {
+    async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.fillFirstName("John");
       await checkoutStepOnePage.fillZipCode("12345");
       await checkoutStepOnePage.continue();
@@ -73,7 +68,7 @@ test.describe("Checkout Step One Tests", () => {
 
   test("CHECKOUT-005 - Error when Zip Code is empty", 
     { tag: ["@regression", "@negative"] }, 
-    async ({ checkoutStepOnePage, page }) => {
+    async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.fillFirstName("John");
       await checkoutStepOnePage.fillLastName("Doe");
       await checkoutStepOnePage.continue();
@@ -87,7 +82,7 @@ test.describe("Checkout Step One Tests", () => {
 
   test("CHECKOUT-006 - Error when all fields are empty", 
     { tag: ["@regression", "@negative"] }, 
-    async ({ checkoutStepOnePage, page }) => {
+    async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.continue();
 
       expect(await checkoutStepOnePage.isErrorVisible()).toBe(true);

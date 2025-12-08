@@ -3,18 +3,10 @@ import { test } from "../fixtures/fixtures";
 
 test.describe("Products Landing Page Tests", () => {
 
-  test.beforeEach(async ({ loginPage}) => {
-
-    await loginPage.navigate("https://www.saucedemo.com/");
-    await loginPage.fillUsername("standard_user");
-    await loginPage.fillPassword("secret_sauce"); //зробити один метод
-    await loginPage.clickLogin();
-  });
-
   test(
     "PLP-001 - Add product to cart",
     { tag: ["@regression"] },
-    async ({ productsPage }) => {
+    async ({ productsPage, beforeFixture }) => {
       const productName = "Sauce Labs Backpack";
 
       await productsPage.addToCartByTitle(productName);
@@ -27,7 +19,7 @@ test.describe("Products Landing Page Tests", () => {
   test(
     "PLP-002 - Remove product from cart",
     { tag: ["@regression"] },
-    async ({ productsPage }) => {
+    async ({ productsPage, beforeFixture }) => {
       const productName = "Sauce Labs Bike Light";
 
       // Додаємо
@@ -43,7 +35,7 @@ test.describe("Products Landing Page Tests", () => {
   test(
     "PLP-003 - Get correct product price",
     { tag: ["@regression"] },
-    async ({ productsPage }) => {
+    async ({ productsPage, beforeFixture }) => {
       const productName = "Sauce Labs Backpack";
 
       const price = await productsPage.getPriceByTitle(productName);
@@ -55,7 +47,7 @@ test.describe("Products Landing Page Tests", () => {
   test(
     "PLP-004 - Add multiple products to cart",
     { tag: ["@regression"] },
-    async ({ productsPage }) => {
+    async ({ productsPage, beforeFixture }) => {
       const products = [
         "Sauce Labs Backpack",
         "Sauce Labs Bike Light",

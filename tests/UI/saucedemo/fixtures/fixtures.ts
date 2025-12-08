@@ -13,6 +13,7 @@ type Pages = {
          checkoutStepOnePage: CheckoutStepOnePage;
          checkoutStepTwoPage: CheckoutStepTwoPage;
          checkoutCompletePage: CheckoutCompletePage;
+         beforeFixture: void;
         }
 
 export const test = base.extend<Pages>({
@@ -40,5 +41,13 @@ export const test = base.extend<Pages>({
         checkoutCompletePage: async ({page}, use) => {
             const checkoutCompletePage = new CheckoutCompletePage(page);
             await use(checkoutCompletePage);
+        },
+
+        beforeFixture: async ({loginPage}, use) => {
+            await loginPage.navigate('https://www.saucedemo.com/');
+            await loginPage.fillUsername('standard_user');
+            await loginPage.fillPassword('secret_sauce');
+            await loginPage.clickLogin();
+            await use();
         }
 })
