@@ -14,8 +14,8 @@ test.describe("Checkout Step Two and Complete Tests", () => {
   });
 
 
-  test("CHECKOUT-STEP2-001 - Verify product is in overview", 
-    { tag: ["@regression"] }, 
+  test("CHECKOUT-STEP2-001 - Verify product is in overview",
+    { tag: ["@regression"] },
     async ({ checkoutStepTwoPage, beforeFixture }) => {
       const productName = "Sauce Labs Backpack";
 
@@ -24,8 +24,8 @@ test.describe("Checkout Step Two and Complete Tests", () => {
     }
   );
 
-  test("CHECKOUT-STEP2-002 - Verify payment and shipping info", 
-    { tag: ["@regression"] }, 
+  test("CHECKOUT-STEP2-002 - Verify payment and shipping info",
+    { tag: ["@regression"] },
     async ({ checkoutStepTwoPage, beforeFixture }) => {
       const paymentInfo = await checkoutStepTwoPage.getPaymentInfo();
       const shippingInfo = await checkoutStepTwoPage.getShippingInfo();
@@ -36,8 +36,8 @@ test.describe("Checkout Step Two and Complete Tests", () => {
   );
 
 
-  test("CHECKOUT-STEP2-003 - Verify product price", 
-    { tag: ["@regression"] }, 
+  test("CHECKOUT-STEP2-003 - Verify product price",
+    { tag: ["@regression"] },
     async ({ checkoutStepTwoPage, beforeFixture }) => {
       const productName = "Sauce Labs Backpack";
       const price = await checkoutStepTwoPage.getProductPrice(productName);
@@ -46,8 +46,8 @@ test.describe("Checkout Step Two and Complete Tests", () => {
     }
   );
 
-  test("CHECKOUT-STEP2-004 - Cancel and return to products", 
-    { tag: ["@regression"] }, 
+  test("CHECKOUT-STEP2-004 - Cancel and return to products",
+    { tag: ["@regression"] },
     async ({ checkoutStepTwoPage, beforeFixture, page }) => {
       await checkoutStepTwoPage.cancel();
 
@@ -55,8 +55,8 @@ test.describe("Checkout Step Two and Complete Tests", () => {
     }
   );
 
-  test("CHECKOUT-STEP2-005 - Complete order successfully", 
-    { tag: ["@regression", "@smoke", "@e2e"] }, 
+  test("CHECKOUT-STEP2-005 - Complete order successfully",
+    { tag: ["@regression", "@smoke", "@e2e"] },
     async ({ checkoutStepTwoPage, checkoutCompletePage, beforeFixture, page }) => {
       await checkoutStepTwoPage.finish();
 
@@ -65,8 +65,8 @@ test.describe("Checkout Step Two and Complete Tests", () => {
     }
   );
 
-  test("CHECKOUT-COMPLETE-001 - Verify order success message", 
-    { tag: ["@regression", "@smoke"] }, 
+  test("CHECKOUT-COMPLETE-001 - Verify order success message",
+    { tag: ["@regression", "@smoke"] },
     async ({ checkoutStepTwoPage, checkoutCompletePage, beforeFixture }) => {
       await checkoutStepTwoPage.finish();
 
@@ -79,8 +79,8 @@ test.describe("Checkout Step Two and Complete Tests", () => {
     }
   );
 
-  test("CHECKOUT-COMPLETE-002 - Verify order is successful", 
-    { tag: ["@regression", "@smoke"] }, 
+  test("CHECKOUT-COMPLETE-002 - Verify order is successful",
+    { tag: ["@regression", "@smoke"] },
     async ({ checkoutStepTwoPage, checkoutCompletePage, beforeFixture }) => {
       await checkoutStepTwoPage.finish();
 
@@ -89,10 +89,10 @@ test.describe("Checkout Step Two and Complete Tests", () => {
   );
 
 
-  test("E2E-001 - Full checkout flow from product to order complete", 
-    { tag: ["@e2e", "@smoke"] }, 
+  test("E2E-001 - Full checkout flow from product to order complete",
+    { tag: ["@e2e", "@smoke"] },
     async ({ checkoutStepTwoPage, checkoutCompletePage, beforeFixture, page }) => {
-    
+
       expect(await checkoutStepTwoPage.isProductInOverview("Sauce Labs Backpack")).toBe(true);
       await checkoutStepTwoPage.finish();
 

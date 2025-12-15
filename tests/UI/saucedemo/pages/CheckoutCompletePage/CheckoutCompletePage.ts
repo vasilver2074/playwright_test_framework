@@ -36,7 +36,7 @@ export class CheckoutCompletePage extends BasePage {
 
   async isOrderSuccessful(): Promise<boolean> {
     const header = await this.getCompleteHeader();
-    return header.toLowerCase().includes("thank you") || 
-           header.toLowerCase().includes("complete");
+    return header.toLowerCase().includes("thank you") ||
+      header.toLowerCase().includes("complete");
   }
 }

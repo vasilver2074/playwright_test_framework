@@ -3,16 +3,16 @@ import { BasePageLocators } from "../BasePage/BasePageLocators";
 
 export class CheckoutStepTwoPageLocators extends BasePageLocators {
 
-    // readonly finishButtonLocator: Locator = this.baseLocator.locator('button#finish');
-    // readonly cancelButtonLocator: Locator = this.baseLocator.locator('button#cancel');
-    // readonly priceValueLocator: Locator = this.baseLocator.locator('[data-test="inventory-item-price"]');
+  // readonly finishButtonLocator: Locator = this.baseLocator.locator('button#finish');
+  // readonly cancelButtonLocator: Locator = this.baseLocator.locator('button#cancel');
+  // readonly priceValueLocator: Locator = this.baseLocator.locator('[data-test="inventory-item-price"]');
 
-    readonly pageTitle: Locator = this.baseLocator.locator('.title');
+  readonly pageTitle: Locator = this.baseLocator.locator('.title');
 
   readonly paymentInfoLabel: Locator = this.baseLocator.locator(
     '[data-test="payment-info-label"]'
   );
-  
+
   readonly paymentInfoValue: Locator = this.baseLocator.locator(
     '[data-test="payment-info-value"]'
   );
@@ -20,7 +20,7 @@ export class CheckoutStepTwoPageLocators extends BasePageLocators {
   readonly shippingInfoLabel: Locator = this.baseLocator.locator(
     '[data-test="shipping-info-label"]'
   );
-  
+
   readonly shippingInfoValue: Locator = this.baseLocator.locator(
     '[data-test="shipping-info-value"]'
   );

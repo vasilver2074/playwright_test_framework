@@ -46,7 +46,7 @@ export class ProductsPage extends BasePage {
     return card;
   }
 
-   async addToCartByTitle(productName: string): Promise<void> {
+  async addToCartByTitle(productName: string): Promise<void> {
     await this.locators.getAddToCartButtonLocator(productName).click();
   }
 
@@ -62,11 +62,11 @@ export class ProductsPage extends BasePage {
   async getCartItemCount(): Promise<number> {
     const badge = this.locators.shoppingCartBadge;
     const isVisible = await badge.isVisible();
-    
+
     if (!isVisible) {
       return 0;
     }
-    
+
     const count = await badge.textContent();
     return parseInt(count || "0", 10);
   }

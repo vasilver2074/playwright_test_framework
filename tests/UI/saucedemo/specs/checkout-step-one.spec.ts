@@ -12,8 +12,8 @@ test.describe("Checkout Step One Tests", () => {
   });
 
 
-  test("CHECKOUT-001 - Fill form with Faker data", 
-    { tag: ["@regression"] }, 
+  test("CHECKOUT-001 - Fill form with Faker data",
+    { tag: ["@regression"] },
     async ({ checkoutStepOnePage, beforeFixture, page }) => {
       const firstName = faker.person.firstName();
       const lastName = faker.person.lastName();
@@ -28,65 +28,65 @@ test.describe("Checkout Step One Tests", () => {
     }
   );
 
-  test("CHECKOUT-002 - Cancel and return to cart", 
-    { tag: ["@regression"] }, 
+  test("CHECKOUT-002 - Cancel and return to cart",
+    { tag: ["@regression"] },
     async ({ checkoutStepOnePage, cartPage, beforeFixture, page }) => {
       await checkoutStepOnePage.cancel();
       await expect(page).toHaveURL(/.*cart/);
-      
+
       expect(await cartPage.isProductInCart("Sauce Labs Backpack")).toBe(true);
     }
   );
 
-  test("CHECKOUT-003 - Error when First Name is empty", 
-    { tag: ["@regression", "@negative"] }, 
+  test("CHECKOUT-003 - Error when First Name is empty",
+    { tag: ["@regression", "@negative"] },
     async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.fillLastName("Doe");
       await checkoutStepOnePage.fillZipCode("12345");
       await checkoutStepOnePage.continue();
 
       expect(await checkoutStepOnePage.isErrorVisible()).toBe(true);
-      
+
       const errorMessage = await checkoutStepOnePage.getErrorMessage();
       expect(errorMessage).toContain("First Name is required");
     }
   );
 
   test("CHECKOUT-004 - Error when Last Name is empty",
-    { tag: ["@regression", "@negative"] }, 
+    { tag: ["@regression", "@negative"] },
     async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.fillFirstName("John");
       await checkoutStepOnePage.fillZipCode("12345");
       await checkoutStepOnePage.continue();
 
       expect(await checkoutStepOnePage.isErrorVisible()).toBe(true);
-      
+
       const errorMessage = await checkoutStepOnePage.getErrorMessage();
       expect(errorMessage).toContain("Last Name is required");
     }
   );
 
-  test("CHECKOUT-005 - Error when Zip Code is empty", 
-    { tag: ["@regression", "@negative"] }, 
+  test("CHECKOUT-005 - Error when Zip Code is empty",
+    { tag: ["@regression", "@negative"] },
     async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.fillFirstName("John");
       await checkoutStepOnePage.fillLastName("Doe");
       await checkoutStepOnePage.continue();
 
       expect(await checkoutStepOnePage.isErrorVisible()).toBe(true);
-      
+
       const errorMessage = await checkoutStepOnePage.getErrorMessage();
       expect(errorMessage).toContain("Postal Code is required");
     }
   );
 
-  test("CHECKOUT-006 - Error when all fields are empty", 
-    { tag: ["@regression", "@negative"] }, 
+  test("CHECKOUT-006 - Error when all fields are empty",
+    { tag: ["@regression", "@negative"] },
     async ({ checkoutStepOnePage, beforeFixture }) => {
       await checkoutStepOnePage.continue();
 
       expect(await checkoutStepOnePage.isErrorVisible()).toBe(true);
-      
+
       const errorMessage = await checkoutStepOnePage.getErrorMessage();
       expect(errorMessage).toContain("First Name is required");
     }

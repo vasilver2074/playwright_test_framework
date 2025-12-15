@@ -14,7 +14,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-001 - Remove product from cart by title",
         { tag: ["@regression"] },
-        async ({ cartPage , beforeFixture}) => {
+        async ({ cartPage, beforeFixture }) => {
             const productName = "Sauce Labs Backpack";
 
             expect(await cartPage.isProductInCart(productName)).toBe(true);
@@ -27,7 +27,7 @@ test.describe("Cart Page Tests", () => {
 
     test("CART-002 - Checkout navigation",
         { tag: ["@regression"] },
-        async ({ cartPage, beforeFixture,page }) => {
+        async ({ cartPage, beforeFixture, page }) => {
             await cartPage.checkout();
 
             await expect(page).toHaveURL(/.*checkout-step-one/);
